@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <form id="postForm" action="/useCaseStudy/postHandling/index.html" >
+        <label for="id">ID</label>
+        <input type="text" id="postId">
+        <br>
+        <label for="title">Title</label>
+        <input type="text"  id="postTitle">
+        <br>
+        <button id="submitForm">Submit</button>
+    </form>
+    <script>
+        var posts = JSON.parse(localStorage.getItem("posts")) || [
+            {id: 1, title: "Daily JS News"},
+            {id: 2, title: "Daily PHP News"},
+            {id: 3, title: "Daily Python News"},
+            {id: 4, title: "Daily C++ News"}
+        ];
+        
+        const submitDetails=document.querySelector("#submitForm");
+         submitDetails.addEventListener("click",(event)=>{
+            const idDetails=document.getElementById("postId").value;
+            const postDetails=document.querySelector("#postTitle").value;
+       
+        if (idDetails && postDetails) {
+            posts.push({ id: Number(idDetails), title: postDetails });
+            localStorage.setItem("posts", JSON.stringify(posts));
+            window.location.href="index.html";
+        }
+         });
+  
+
+    </script>
+</body>
+</html>

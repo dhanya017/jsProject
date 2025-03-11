@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="postTable">
+        <thead>
+            <th>ID</th>
+            <th>Title</th>
+        </thead>
+        <tbody>
+        </tbody>
+        <script>
+            const tableBody=document.querySelector(".postTable tbody");
+       var posts = JSON.parse(localStorage.getItem("posts")) || [
+                {id: 1, title: "Daily JS News"},
+                {id: 2, title: "Daily PHP News"},
+                {id: 3, title: "Daily Python News"},
+                {id: 4, title: "Daily C++ News"}
+            ];
+
+           function tableUpdate(){
+            tableBody.innerHTML = '';
+            posts.forEach(item => {
+                const rowHTML = `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.title}</td>
+                    </tr>
+                `;
+
+                tableBody.innerHTML += rowHTML;
+            });
+           }
+           tableUpdate();           
+        </script>
+    </table>
+    <a href="/useCaseStudy/postHandling/form.html">
+        <button class="savePost">Add Post</button>
+    </a>  
+</body>
+</html>
